@@ -20,12 +20,12 @@
 
     <fragment
         android:id="@+id/preferencesFragment"
-        android:name="andicar.n.activity.preference.PreferenceActivity"
-        android:label="@string/preferences" />
+        android:name="org.andicar2.activity.ui.screens.PreferenceFragment"
+        android:label="Preferences" />
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="andicar.n.activity.miscellaneous.AboutActivity"
-        android:label="@string/about" />
+        android:name="org.andicar2.activity.ui.screens.AboutFragment"
+        android:label="About" />
 
 </navigation>
