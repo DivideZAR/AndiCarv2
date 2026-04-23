@@ -25,11 +25,9 @@ buildscript {
     }
 
     dependencies {
-        //classpath 'io.fabric.tools:gradle:1.31.2'
     }
 }
 apply plugin: 'com.android.application'
-//apply plugin: 'io.fabric'
 
 repositories {
     google()
@@ -37,12 +35,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 34
+    buildToolsVersion '34.0.0'
     defaultConfig {
         applicationId "org.andicar2.activity"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 34
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
@@ -120,37 +118,39 @@ dependencies {
     // ========================================
     // GOOGLE API CLIENT
     // ========================================
-    implementation('com.google.api-client:google-api-client-android:1.22.0') {
+    implementation('com.google.api-client:google-api-client-android:2.2.0') {
         exclude group: 'org.apache.httpcomponents'
         exclude module: 'guava-jdk5'
     }
-    implementation('com.google.apis:google-api-services-gmail:v1-rev47-1.22.0') {
+    implementation('com.google.apis:google-api-services-gmail:v1-rev20240520.1') {
         exclude group: 'org.apache.httpcomponents'
         exclude module: 'guava-jdk5'
     }
 
     // ========================================
-    // CRASHLYTICS
+    // DEPRECATED - CRASHLYTICS (removed, use Firebase Crashlytics now)
     // ========================================
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
-        transitive = true
-    }
-    implementation('com.crashlytics.sdk.android:answers:1.3.13@aar') {
-        transitive = true
-    }
+    // implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+    //     transitive = true
+    // }
+    // implementation('com.crashlytics.sdk.android:answers:1.3.13@aar') {
+    //     transitive = true
+    // }
 
     // ========================================
     // PLAY SERVICES
     // ========================================
-    implementation 'com.google.android.gms:play-services-auth:11.8.0'
-    implementation 'com.google.android.gms:play-services-maps:11.8.0'
-    implementation 'com.google.android.gms:play-services-drive:11.8.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-maps:19.0.0'
+    implementation 'com.google.android.gms:play-services-drive:19.0.0'
 
     // ========================================
     // FIREBASE
     // ========================================
-    implementation 'com.google.firebase:firebase-core:11.8.0'
-    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation platform('com.google.firebase:firebase-bom:33.1.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.firebase:firebase-jobdispatcher:0.8.3'
 
     // ========================================
