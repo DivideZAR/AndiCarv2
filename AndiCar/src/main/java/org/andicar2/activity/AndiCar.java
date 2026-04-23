@@ -29,8 +29,7 @@ import android.preference.PreferenceManager;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.answers.Answers;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
@@ -42,7 +41,6 @@ import andicar.n.utils.AndiCarCrashReporter;
 import andicar.n.utils.ConstantValues;
 import andicar.n.utils.FileUtils;
 import andicar.n.utils.Utils;
-import io.fabric.sdk.android.Fabric;
 
 public class AndiCar extends MultiDexApplication {
     private static Resources appResources;
@@ -65,9 +63,9 @@ public class AndiCar extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
-        // Set up Crashlytics, disabled for debug builds
+        // Set up Firebase Crashlytics (automatic with firebase-bom)
         if (!Utils.isDebugVersion()) {
-            Fabric.with(this, new Answers(), new Crashlytics());
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
         } else {
             //subscribe to Debug topic on FBMessaging
             FirebaseMessaging.getInstance().subscribeToTopic("Debug");
