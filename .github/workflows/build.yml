@@ -20,11 +20,19 @@ jobs:
           distribution: temurin
           java-version: '11'
           
-      - name: Setup Android SDK
-        uses: android-actions/setup-android-sdk@v1
-        with:
-          api-level: 33
-          build-tools: "33.0.3"
+      - name: Install Android SDK
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip openjdk-11-jdk
+          mkdir -p android-sdk
+          cd android-sdk
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip -q commandlinetools-linux-11076708_latest.zip
+          mkdir -p cmdline-tools/latest
+          mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || mv cmdline-tools-linux/* cmdline-tools/latest/
+          yes | ./cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
+          ./cmdline-tools/latest/bin/sdkmanager "platforms;android-33" "build-tools;33.0.3"
+          echo "ANDROID_HOME=$(pwd)" >> $GITHUB_ENV
           
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -33,4 +41,4 @@ jobs:
         run: ./gradlew assembleDebug
         
       - name: Run lint
-        run: ./gradlew lint --stacktrace
+        run: ./gradlew lint
