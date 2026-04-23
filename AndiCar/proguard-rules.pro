@@ -1,23 +1,44 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /home/miki/opt/android-sdk-linux/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# AndiCar ProGuard Rules
+# ProGuard rules for release builds
 
-# Add any project specific keep options here:
+# Keep Firebase classes (Crashlytics, Analytics, Messaging)
+-keep class com.google.firebase.** { *; }
+-keepclassmembers class com.google.firebase.** { *; }
+-keep class com.google.firebase.crashlytics.** { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Keep Google API Client classes
+-keep class com.google.api.** { *; }
+-keep class com.google.apis.** { *; }
 
--dontobfuscate
+# Keep Gmail API service classes
+-keep class com.google.api.services.gmail.** { *; }
 
--keep class javax.** {*;}
--keep class com.sun.mail.** {*;}
-#-keepattributes InnerClasses,EnclosingMethod
+# Keep Jakarta Mail classes
+-keep class com.sun.mail.** { *; }
+-keep class jakarta.mail.** { *; }
+-keep class javax.mail.** { *; }
+
+# Keep AndroidX Compose classes
+-keep class androidx.compose.** { *; }
+
+# Keep legacy support library (for backward compatibility)
+-keep class android.support.** { *; }
+-keep class com.android.support.** { *; }
+
+# Remove obfuscation - ENABLE for production
+# (removed -dontobfuscate to enable obfuscation)
+
+# Keep Data classes
+-keep class andicar.n.data.** { *; }
+
+# Keep model classes
+-keep class org.andicar2.activity.** { *; }
+
+# Preserve line numbers for crash reports
+-keepattributes SourceFile,LineNumberTable
+
+# Keep signature for reflection
+-keepattributes Signature
+
+# Keep exceptions
+-keepattributes Exception
