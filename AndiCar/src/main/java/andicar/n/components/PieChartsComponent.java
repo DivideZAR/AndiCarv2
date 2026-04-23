@@ -146,7 +146,6 @@ public class PieChartsComponent extends LinearLayout {
         mChartsLine.requestLayout();
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     public void drawChart(int chartIndex, ArrayList<DBReportAdapter.chartData> chartData, String title) {
         AndiCarPieChart chart;
 

@@ -171,7 +171,7 @@ public class GPSTrackMap extends FragmentActivity {
 
                         @Override
                         public View getInfoContents(Marker marker) {
-                            @SuppressLint("InflateParams") View v = getLayoutInflater().inflate(R.layout.gpstrack_map_info_window, null);
+                            View v = getLayoutInflater().inflate(R.layout.gpstrack_map_info_window, parent, false);
 
                             TextView title = v.findViewById(R.id.title);
                             title.setText(marker.getTitle());
