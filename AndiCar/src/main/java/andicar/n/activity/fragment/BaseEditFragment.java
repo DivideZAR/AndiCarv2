@@ -99,7 +99,6 @@ public abstract class BaseEditFragment extends Fragment {
     public static final String IS_FUEL_KEY = "IsFuel";
     public static final String BPARTNER_ID_KEY = "mBPartnerId";
     public final View.OnTouchListener spinnerOnTouchListener = new View.OnTouchListener() {
-        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View view, MotionEvent me) {
             return false;
