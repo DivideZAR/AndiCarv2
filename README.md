@@ -4,6 +4,9 @@ AndiCar is a free vehicle management, trip log, and expense tracker for Android 
 
 It can be installed from Google Play: [ https://play.google.com/store/apps/details?id=org.andicar2.activity](https://play.google.com/store/apps/details?id=org.andicar2.activity)
 
+## CI Verification
+<!-- Trigger CI build -->
+
 ## Feature Flags
 
 AndiCar uses a runtime feature flag system to enable/disable new features without rebuilding the app.
