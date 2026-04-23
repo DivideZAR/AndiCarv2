@@ -19,7 +19,6 @@
 
 package org.andicar2.activity;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -43,12 +42,11 @@ import andicar.n.utils.FileUtils;
 import andicar.n.utils.Utils;
 
 public class AndiCar extends MultiDexApplication {
-    private static Resources appResources;
+    private static WeakReference<Resources> appResourcesRef;
     private static SharedPreferences appPreferences;
-    @SuppressLint("StaticFieldLeak")
 
     public static Resources getAppResources() {
-        return appResources;
+        return appResourcesRef != null ? appResourcesRef.get() : null;
     }
 
     public static SharedPreferences getDefaultSharedPreferences() {
@@ -94,7 +92,7 @@ public class AndiCar extends MultiDexApplication {
                 FirebaseMessaging.getInstance().subscribeToTopic("GeneralEN");
         }
 
-        AndiCar.appResources = getResources();
+        AndiCar.appResourcesRef = new WeakReference<>(getResources());
         AndiCar.appPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
