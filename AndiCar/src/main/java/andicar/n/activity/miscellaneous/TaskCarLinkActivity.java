@@ -220,7 +220,6 @@ public class TaskCarLinkActivity extends AppCompatActivity {
         mCarID = Utils.initSpinner(mDbAdapter, spnCar, DBAdapter.TABLE_NAME_CAR, mLinkDialogCarSelectCondition, mCarID, mRowId > 0, false);
         if (mRowId == -1) {
             spnCar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @SuppressLint("SetTextI18n")
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                     mCarID = mDbAdapter.getIdByName(DBAdapter.TABLE_NAME_CAR, adapterView.getAdapter().getItem(position).toString());
@@ -282,7 +281,6 @@ public class TaskCarLinkActivity extends AppCompatActivity {
         mDbAdapter.close();
     }
 
-    @SuppressLint("SetTextI18n")
     private void showDateTime() {
         tvDateTimeValue.setText(DateFormat.getDateFormat(getApplicationContext()).format(mDateTimeCalendar.getTime()) + " "
                 + DateFormat.getTimeFormat(getApplicationContext()).format(mDateTimeCalendar.getTime()));

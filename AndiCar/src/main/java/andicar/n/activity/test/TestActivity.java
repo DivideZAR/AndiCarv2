@@ -48,7 +48,6 @@ import andicar.n.utils.ConstantValues;
 import andicar.n.utils.Utils;
 
 @SuppressWarnings({"FieldCanBeLocal", "unchecked", "unused", "NullableProblems"})
-@SuppressLint("SetTextI18n")
 public class TestActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, AndiCarAsyncTaskListener {
     private static final int REQUEST_CODE_RESOLVE_CONNECTION = 1;
     private static final int REQUEST_CODE_OPEN_DRIVE_FILE = 1000;
@@ -122,7 +121,6 @@ public class TestActivity extends AppCompatActivity implements GoogleApiClient.C
 
         Button btn4 = findViewById(R.id.btn4);
         btn4.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SdCardPath")
             @Override
             public void onClick(View view) {
                 try {
@@ -258,7 +256,7 @@ public class TestActivity extends AppCompatActivity implements GoogleApiClient.C
 
             final DriveContents driveContents = result.getDriveContents();
 
-            // Perform I/O off the UI thread.
+                    // Perform I/O off the UI thread.
             new Thread() {
                 @Override
                 public void run() {
@@ -266,7 +264,7 @@ public class TestActivity extends AppCompatActivity implements GoogleApiClient.C
                     try {
                         //getting image from the local storage
 //                /sdcard/andicar/backups/abk_2017-10-17-092529637.db
-                        @SuppressLint("SdCardPath") InputStream inputStream = getContentResolver().openInputStream(
+                        InputStream inputStream = getContentResolver().openInputStream(
                                 AndiCarFileProvider.getUriForFile(getApplicationContext(), "org.andicar2.provider", new File("/sdcard/andicar/backups/abk_2017-10-17-092529637.db")));
 
                         if (inputStream != null) {

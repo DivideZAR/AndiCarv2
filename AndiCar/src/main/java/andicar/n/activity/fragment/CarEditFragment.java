@@ -317,7 +317,6 @@ public class CarEditFragment extends BaseEditFragment {
                 mAltFuelUOMId, mRowId > 0, false);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void showValuesInUI() {
         etName.setText(mName);

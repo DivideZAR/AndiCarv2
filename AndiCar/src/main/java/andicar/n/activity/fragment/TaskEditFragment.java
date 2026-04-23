@@ -129,7 +129,6 @@ public class TaskEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("WrongConstant")
     private void loadDataFromDB() {
         Cursor c = mDbAdapter.fetchRecord(DBAdapter.TABLE_NAME_TASK, DBAdapter.COL_LIST_TASK_TABLE, mRowId);
 
@@ -219,7 +218,6 @@ public class TaskEditFragment extends BaseEditFragment {
         mScheduledFor = TASK_SCHEDULED_FOR_BOTH;
     }
 
-    @SuppressLint("WrongConstant")
     @Override
     protected void loadSpecificViewsFromLayoutXML() {
         spnTaskType = mRootView.findViewById(R.id.spnTaskType);
@@ -518,7 +516,6 @@ public class TaskEditFragment extends BaseEditFragment {
         fillLinkedCarsData();
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void setSpecificLayout() {
         if (isRecurrent) {
@@ -877,7 +874,7 @@ public class TaskEditFragment extends BaseEditFragment {
             mDbAdapter.updateRecords(DBAdapter.TABLE_NAME_TASK_CAR, DBAdapter.COL_NAME_TASK_CAR__TASK_ID + " = ?", selectionArgs, newContent);
         }
         if (!isMileageEnabled) {
-            newContent.put(DBAdapter.COL_NAME_TASK_CAR__FIRSTRUN_MILEAGE, (Integer) null);
+            newContent.put(DBAdapter.COL_NAME_TASK_CAR__FIRSTRUN_DATE, (Long) null);
             mDbAdapter.updateRecords(DBAdapter.TABLE_NAME_TASK_CAR, DBAdapter.COL_NAME_TASK_CAR__TASK_ID + " = ?", selectionArgs, newContent);
         }
         return true;

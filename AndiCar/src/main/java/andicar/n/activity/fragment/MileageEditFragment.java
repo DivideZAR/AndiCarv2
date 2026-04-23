@@ -108,7 +108,6 @@ public class MileageEditFragment extends BaseEditFragment {
     private EditText etStartIndex;
     private EditText etUserInput;
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -325,7 +324,6 @@ public class MileageEditFragment extends BaseEditFragment {
         calculateTripDuration();
     }
 
-    @SuppressLint("SetTextI18n")
     protected void loadSpecificViewsFromLayoutXML() {
         if (mRootView == null) {
             return;
@@ -472,7 +470,6 @@ public class MileageEditFragment extends BaseEditFragment {
         viewsLoaded = true;
     }
 
-    @SuppressLint("SetTextI18n")
     protected void initSpecificControls() {
 
         if (mInsertMode == INSERT_MODE_INDEX) {
@@ -727,7 +724,6 @@ public class MileageEditFragment extends BaseEditFragment {
         mlTripDurationInSeconds = (mlDateTimeToInMillis - mlDateTimeInMillis) / 1000;
     }
 
-    @SuppressLint("SetTextI18n")
     void showTripDuration() {
         if (mlTripDurationInSeconds > 0) {
             tvTripDurationContent.setVisibility(View.VISIBLE);
@@ -737,7 +733,6 @@ public class MileageEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     public void calculateMileageOrNewIndex() throws NumberFormatException {
         try {
             if (mInsertMode == INSERT_MODE_INDEX) { //new index
@@ -763,7 +758,6 @@ public class MileageEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void showReimbursementValue() {
         if (!mReimbursementCanCalculated || mNewIndex == null) {
             return;
@@ -849,7 +843,6 @@ public class MileageEditFragment extends BaseEditFragment {
         showReimbursementValue();
     }
 
-    @SuppressLint("SetTextI18n")
     private void showDateTimeTo() {
         if (tvDateTimeToValue == null) {
             return;
@@ -882,7 +875,6 @@ public class MileageEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("WrongConstant")
     private void initDateTimeToFields() {
         mDateTimeToCalendar.setTimeInMillis(mlDateTimeToInMillis);
         mYearTo = mDateTimeToCalendar.get(Calendar.YEAR);
@@ -894,7 +886,6 @@ public class MileageEditFragment extends BaseEditFragment {
         mlDateTimeToInMillis = mDateTimeToCalendar.getTimeInMillis();
     }
 
-    @SuppressLint("SetTextI18n")
     public void setInsertMode(int insertMode) {
         mInsertMode = insertMode;
         if (mInsertMode == INSERT_MODE_INDEX) {

@@ -66,7 +66,6 @@ public class ToDoNotificationDialogActivity extends AppCompatActivity {
     private String minutesOrDays;
 
     @SuppressWarnings("deprecation")
-    @SuppressLint("SetTextI18n")
     @Override
     public void onCreate(Bundle icicle) {
 
@@ -263,7 +262,6 @@ public class ToDoNotificationDialogActivity extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("WrongConstant")
     private boolean saveData() {
         isOKPressed = true;
         if (!isTodoOK) {

@@ -164,7 +164,6 @@ public class GPSTrackEditFragment extends BaseEditFragment {
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void showValuesInUI() {
         etName.setText(mName);
