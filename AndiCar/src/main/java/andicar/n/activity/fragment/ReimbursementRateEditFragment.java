@@ -152,7 +152,6 @@ public class ReimbursementRateEditFragment extends BaseEditFragment {
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void showValuesInUI() {
         tvValidFromValue.setText(DateFormat.getDateFormat(getContext()).format(calValidFrom.getTime()));
@@ -231,7 +230,6 @@ public class ReimbursementRateEditFragment extends BaseEditFragment {
         outState.putString("mRateUOM", mRateUOM);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void setCarId(long carId) {
         super.setCarId(carId);

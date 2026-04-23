@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         super.onResume();
@@ -804,7 +803,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void fillLastRecord(RecordComponent recordComponent, String recordSource) {
         try {
             recordComponent.setEditButtonOnClickListener(btnEditClickListener);
@@ -1524,7 +1522,6 @@ public class MainActivity extends AppCompatActivity
         fillContent();
     }
 
-    @SuppressLint("WrongConstant")
     private void fillToDoZone() {
         final boolean toDoExists;
         Bundle whereConditions = new Bundle();
@@ -1705,7 +1702,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void fillStatisticsZone(StatisticsComponent statisticsComponent) {
         Cursor listCursor;
         Bundle whereConditions = new Bundle();
@@ -1965,7 +1961,6 @@ public class MainActivity extends AppCompatActivity
         catch (Exception ignored){}
     }
 
-    @SuppressLint("WrongConstant")
     private void fillShortAbout() {
         String appVersion = null;
 

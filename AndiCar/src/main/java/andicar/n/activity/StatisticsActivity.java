@@ -136,8 +136,8 @@ public class StatisticsActivity extends AppCompatActivity {
         Set<String> whereColumns = null;
         CharSequence spanText_Filters;
         CharSequence cs;
-        @SuppressLint("UseSparseArrays") HashMap<Integer, String> emailFilterList = new HashMap<>();
-        @SuppressLint("UseSparseArrays") HashMap<Integer, CharSequence> screenFilterList = new HashMap<>();
+        SparseArray<String> emailFilterList = new SparseArray<>();
+        SparseArray<CharSequence> screenFilterList = new SparseArray<>();
 
         reportAdapter = new DBReportAdapter(this, null, null);
 

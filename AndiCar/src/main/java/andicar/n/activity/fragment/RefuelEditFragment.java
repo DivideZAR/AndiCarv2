@@ -185,7 +185,6 @@ public class RefuelEditFragment extends BaseEditFragment {
         return mRootView;
     }
 
-    @SuppressLint("SetTextI18n")
     private void loadDataFromDB() {
         Cursor c = mDbAdapter.fetchRecord(DBAdapter.TABLE_NAME_REFUEL, DBAdapter.COL_LIST_REFUEL_TABLE, mRowId);
 
@@ -468,7 +467,6 @@ public class RefuelEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     protected void showValuesInUI() {
         etIndex.setText(Utils.numberToString(mIndex, false, ConstantValues.DECIMALS_LENGTH, ConstantValues.ROUNDING_MODE_LENGTH));
         etQuantity.setText(Utils.numberToString(mQuantityEntered, false, ConstantValues.DECIMALS_VOLUME, ConstantValues.ROUNDING_MODE_VOLUME));
@@ -908,7 +906,6 @@ public class RefuelEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void calculatePriceAmount() {
         if (etQuantity == null) {
             return;
@@ -956,7 +953,6 @@ public class RefuelEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void calculateBaseUOMQty() {
         if (mUOMFuelId == mDefaultUOMVolumeId || tvBaseUOMQtyValue == null) {
             return;

@@ -1,6 +1,5 @@
 package andicar.n.persistence.viewadapter;
 
-import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,9 +17,8 @@ public class ExpenseViewAdapter extends BaseViewAdapter {
         mViewAdapterType = VIEW_ADAPTER_TYPE_EXPENSE;
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
-    protected void cursorViewBinder(DefaultViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    protected void cursorViewBinder(DefaultViewHolder holder, int position) {
         String line1Content;
         String line2Content;
         String line3Content;

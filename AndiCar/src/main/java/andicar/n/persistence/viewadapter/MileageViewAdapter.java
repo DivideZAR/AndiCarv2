@@ -19,7 +19,6 @@
 
 package andicar.n.persistence.viewadapter;
 
-import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -45,9 +44,8 @@ public class MileageViewAdapter extends BaseViewAdapter {
         mViewAdapterType = VIEW_ADAPTER_TYPE_MILEAGE;
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
-    protected void cursorViewBinder(DefaultViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    protected void cursorViewBinder(DefaultViewHolder holder, int position) {
         BigDecimal reimbursementRate = BigDecimal.ZERO;
         String line1Content;
         String line2Content;

@@ -431,7 +431,6 @@ public class ExpenseEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void showValuesInUI() {
         etIndex.setText(mIndex);
@@ -749,7 +748,6 @@ public class ExpenseEditFragment extends BaseEditFragment {
         mConversionRate = rate;
     }
 
-    @SuppressLint("SetTextI18n")
     private void setConversionRateZoneVisible(boolean isVisible) {
         if (!viewsLoaded) {
             return;
@@ -805,7 +803,6 @@ public class ExpenseEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void calculatePrice() {
         if (!viewsLoaded) {
             return;
@@ -840,7 +837,6 @@ public class ExpenseEditFragment extends BaseEditFragment {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void calculateAmount() {
         if (!viewsLoaded) {
             return;

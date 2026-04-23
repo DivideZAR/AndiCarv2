@@ -34,6 +34,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 
 import andicar.n.persistence.DBAdapter;
 import andicar.n.utils.AndiCarCrashReporter;
@@ -42,6 +43,7 @@ import andicar.n.utils.FileUtils;
 import andicar.n.utils.Utils;
 
 public class AndiCar extends MultiDexApplication {
+    private static final long DEFAULT_BACKUP_TIMESTAMP = new Date(100, 0, 1).getTime(); // Jan 1, 2000
     private static WeakReference<Resources> appResourcesRef;
     private static SharedPreferences appPreferences;
 
@@ -350,7 +352,6 @@ public class AndiCar extends MultiDexApplication {
         e.apply();
     }
 
-    @SuppressLint("WrongConstant")
     private void initPreferences() {
         //set up the backup service
         if (!appPreferences.contains(appResources.getString(R.string.pref_key_backup_service_exec_hour))) {
@@ -361,7 +362,7 @@ public class AndiCar extends MultiDexApplication {
                 isActive = false;
             }
             Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(946753200778L);
+            cal.setTimeInMillis(DEFAULT_BACKUP_TIMESTAMP);
 
             SharedPreferences.Editor editor = appPreferences.edit();
             editor.putInt(getString(R.string.pref_key_backup_service_exec_hour), cal.get(Calendar.HOUR_OF_DAY));

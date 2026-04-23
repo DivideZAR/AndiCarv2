@@ -99,7 +99,6 @@ public abstract class BaseEditFragment extends Fragment {
     public static final String IS_FUEL_KEY = "IsFuel";
     public static final String BPARTNER_ID_KEY = "mBPartnerId";
     public final View.OnTouchListener spinnerOnTouchListener = new View.OnTouchListener() {
-        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View view, MotionEvent me) {
             return false;
@@ -164,7 +163,6 @@ public abstract class BaseEditFragment extends Fragment {
     protected boolean viewsLoaded = false;
     //used when only the hour:minute are set (Tasks)
     protected TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-        @SuppressLint("WrongConstant")
         @Override
         public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
             mDateTimeCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -503,7 +501,6 @@ public abstract class BaseEditFragment extends Fragment {
      * Data initialisation for common UI elements
      */
     @SuppressWarnings("UnusedAssignment")
-    @SuppressLint("SetTextI18n")
     protected void initCommonControls() {
         long checkID;
         if (spnCar != null) {
@@ -551,7 +548,7 @@ public abstract class BaseEditFragment extends Fragment {
                     //noinspection WrongConstant
 //                    if(mDateTimeCalendar.get(Calendar.YEAR) > 1970) {
                     if (isTimeOnly) {
-                        @SuppressLint("WrongConstant") TimePickerDialog tp = new TimePickerDialog(BaseEditFragment.this.getActivity(), mTimeSetListener, mDateTimeCalendar.get(Calendar.HOUR_OF_DAY), mDateTimeCalendar.get(Calendar.MINUTE), true);
+                        TimePickerDialog tp = new TimePickerDialog(BaseEditFragment.this.getActivity(), mTimeSetListener, mDateTimeCalendar.get(Calendar.HOUR_OF_DAY), mDateTimeCalendar.get(Calendar.MINUTE), true);
                         tp.show();
                     }
                     else {
@@ -745,7 +742,6 @@ public abstract class BaseEditFragment extends Fragment {
         initDateTimeFields();
     }
 
-    @SuppressLint("WrongConstant")
     void initDateTimeFields() {
         mDateTimeCalendar.setTimeInMillis(mlDateTimeInMillis);
         if (isTimeOnly) {
@@ -766,8 +762,6 @@ public abstract class BaseEditFragment extends Fragment {
 //	void updateDateTime2Fields() {
 //		mDateTimeCalendar2.set(mYear2, mMonth2, mDay2, mHour2, mMinute2, 0);
 //		mlDateTime2InSeconds = mDateTimeCalendar2.getTimeInMillis() / 1000;
-    @SuppressLint("SetTextI18n")
-    @SuppressWarnings("WrongConstant")
     void showDateTime() {
 //        if(mDateTimeCalendar.get(Calendar.YEAR) == 1970) {
         if (isTimeOnly) {

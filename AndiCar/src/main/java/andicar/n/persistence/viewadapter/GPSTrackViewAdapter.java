@@ -19,7 +19,6 @@
 
 package andicar.n.persistence.viewadapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -47,7 +46,7 @@ public class GPSTrackViewAdapter extends BaseViewAdapter {
     }
 
     @Override
-    protected void cursorViewBinder(DefaultViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    protected void cursorViewBinder(DefaultViewHolder holder, int position) {
         String line1Content;
         String line2Content;
         String line3Content;
