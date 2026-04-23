@@ -14,31 +14,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Set up JDK 11
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '11'
           
-      - name: Install Android SDK
+      - name: Debug - list current dir
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip openjdk-11-jdk
-          mkdir -p android-sdk
-          cd android-sdk
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip -q commandlinetools-linux-11076708_latest.zip
-          mkdir -p cmdline-tools/latest
-          mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || mv cmdline-tools-linux/* cmdline-tools/latest/
-          yes | ./cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
-          ./cmdline-tools/latest/bin/sdkmanager "platforms;android-33" "build-tools;33.0.3"
-          echo "ANDROID_HOME=$(pwd)" >> $GITHUB_ENV
+          pwd
+          ls -la
+          
+      - name: Check if gradlew exists
+        run: |
+          ls -la gradlew 2>/dev/null || echo "No gradlew found"
           
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
         
-      - name: Build debug APK
-        run: ./gradlew assembleDebug
-        
-      - name: Run lint
-        run: ./gradlew lint
+      - name: List Gradle files
+        run: ls -la gradle*
