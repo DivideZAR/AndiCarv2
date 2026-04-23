@@ -17,7 +17,30 @@
 
 ## Local Development Setup
 
-### Option A: Android Studio (Recommended)
+### Option A: Windows with Android Studio (Recommended)
+
+- [ ] Open Android Studio
+- [ ] File → New → Project from Version Control
+- [ ] Enter URL: `https://github.com/DivideZAR/AndiCarv2`
+- [ ] Click "Clone"
+- [ ] Wait for Gradle to download dependencies
+- [ ] Build → Build Bundle(s) / APK(s) → Build APK(s)
+- [ ] APK location: `AndiCar\AndiCar\build\outputs\apk\debug\AndiCar-debug.apk`
+
+#### Install on Phone (USB)
+
+- [ ] Enable USB Debugging: Settings → Developer Options → USB Debugging
+- [ ] Connect phone via USB
+- [ ] Click green "Run" arrow in Android Studio
+- [ ] Select your phone
+
+#### Install on Phone (Manual)
+
+- [ ] Transfer APK to phone via USB/email/cloud
+- [ ] Allow "Unknown sources" installation
+- [ ] Open APK and install
+
+### Option C: Linux (Android Studio)
 
 - [ ] Install prerequisites:
   ```bash
@@ -32,7 +55,7 @@
 - [ ] Build: Build → Build APK
 - [ ] Install on phone via USB or transfer APK
 
-### Option B: GitHub Codespaces (Cloud)
+### Option D: GitHub Codespaces (Cloud)
 
 - [ ] Go to: https://github.com/DivideZAR/AndiCarv2
 - [ ] Click "Code" → "Create codespace"
