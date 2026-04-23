@@ -154,11 +154,9 @@ dependencies {
     implementation 'com.firebase:firebase-jobdispatcher:0.8.3'
 
     // ========================================
-    // LOCAL JARs
+    // JAKARTA MAIL (replaces legacy javax.mail JARs)
     // ========================================
-    implementation files('src/main/lib/activation.jar')
-    implementation files('src/main/lib/additionnal.jar')
-    implementation files('src/main/lib/mail.jar')
+    implementation 'com.sun.mail:android-mail:2.1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -43,15 +43,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.util.ByteArrayDataSource;
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
+import jakarta.mail.Multipart;
+import jakarta.mail.Session;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.util.ByteArrayDataSource;
 
 import andicar.n.interfaces.AndiCarAsyncTaskListener;
 import andicar.n.utils.ConstantValues;
@@ -178,7 +178,7 @@ public class SendGMailTask extends AsyncTask<Void, Void, List<String>> {
         MimeMessage mimeMessage = new MimeMessage(session);
 
         mimeMessage.setFrom(new InternetAddress("me"));
-        mimeMessage.addRecipient(javax.mail.Message.RecipientType.TO,
+        mimeMessage.addRecipient(jakarta.mail.Message.RecipientType.TO,
                 new InternetAddress(mEmailTo));
         mimeMessage.setSubject(mSubject);
 
