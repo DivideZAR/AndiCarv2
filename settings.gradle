@@ -1,1 +1,3 @@
-include ':AndiCar'
+rootProject.name = "AndiCar"
+include ':app'
+project(':app').projectDir = new File(rootDir, 'AndiCar')
