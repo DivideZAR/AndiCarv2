@@ -19,7 +19,6 @@
 
 package andicar.n.persistence.viewadapter;
 
-import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -38,9 +37,8 @@ public class Simple3LineViewAdapter extends BaseViewAdapter {
         super(cursor, parentActivity, isTwoPane, scrollToPosition, lastSelectedItemId);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
-    protected void cursorViewBinder(DefaultViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    protected void cursorViewBinder(DefaultViewHolder holder, int position) {
         String line1Content;
         String line2Content;
         String line3Content;

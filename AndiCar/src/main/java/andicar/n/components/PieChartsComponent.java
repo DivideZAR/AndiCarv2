@@ -180,7 +180,6 @@ public class PieChartsComponent extends LinearLayout {
         //simulate the onClick action (because PieChart does not receive this action).
         //the implementation based on https://stackoverflow.com/questions/17831395/how-can-i-detect-a-click-in-an-ontouch-listener
         chart.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
@@ -204,7 +203,14 @@ public class PieChartsComponent extends LinearLayout {
                         break;
                 }
                 return true;
+            }
 
+            @Override
+            public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info) {
+                info.setClassName(View.class.getName());
+                info.setClickable(true);
+                info.setLongClickable(true);
+                info.addAction(AccessibilityNodeInfo.ACTION_CLICK);
             }
         });
     }

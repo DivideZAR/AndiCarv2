@@ -18,7 +18,6 @@
  */
 package andicar.n.persistence;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -1854,10 +1853,12 @@ public class DB {
             upgradeDbTo500(db, oldVersion);
         }
 
-        @SuppressLint("WrongConstant") private void upgradeDbTo500(SQLiteDatabase db, int oldVersion) throws SQLException {
+        private static final long DEFAULT_BACKUP_TIMESTAMP = new java.util.Date(100, 0, 1).getTime(); // Jan 1, 2000
+
+        private void upgradeDbTo500(SQLiteDatabase db, int oldVersion) throws SQLException {
 
             //transfer backup service settings from DB to preference
-            long initTime = 946753200778L;
+            long initTime = DEFAULT_BACKUP_TIMESTAMP;
             boolean isActive = true;
             String scheduleType = ConstantValues.BACKUP_SERVICE_DAILY;
             String activeDaysBitmap = "1111111";

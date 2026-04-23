@@ -88,9 +88,7 @@ public class Utils {
      * @param dateTimeInMillis the datetime in milliseconds
      * @param decodeType       type of decode. See StaticValues.dateDecodeType...
      */
-    //old name: decodeDateStr
-    @SuppressLint("WrongConstant")
-    @SuppressWarnings("SameParameterValue")
+     @SuppressWarnings("SameParameterValue")
     public static long roundDate(long dateTimeInMillis, String decodeType) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(dateTimeInMillis);
@@ -133,7 +131,6 @@ public class Utils {
      * @param separator               separator for date part of the string
      * @return the completed input string with the datetime string
      */
-    @SuppressLint("WrongConstant")
     @SuppressWarnings("SameParameterValue")
     public static String appendDateTime(String inStr, boolean appendMinute, boolean appendSecondMillisecond, String separator) {
         Calendar cal = Calendar.getInstance();
@@ -155,7 +152,6 @@ public class Utils {
      *
      * @return a string representation of the current date/time
      */
-    @SuppressLint("WrongConstant")
     public static String getCurrentDateTimeForLog() {
         Calendar cal = Calendar.getInstance();
         return cal.get(Calendar.YEAR) + "-"

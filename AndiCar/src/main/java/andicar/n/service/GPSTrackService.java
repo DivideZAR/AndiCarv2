@@ -841,7 +841,7 @@ public class GPSTrackService extends Service {
         }
 
         currentLocationDateTime.setTimeInMillis(lCurrentLocationTime);
-        @SuppressLint("WrongConstant") String currentLocationDateTimeGPXStr = currentLocationDateTime.get(Calendar.YEAR) + "-" + Utils.pad(currentLocationDateTime.get(Calendar.MONTH) + 1, 2) + "-"
+        String currentLocationDateTimeGPXStr = currentLocationDateTime.get(Calendar.YEAR) + "-" + Utils.pad(currentLocationDateTime.get(Calendar.MONTH) + 1, 2) + "-"
                 + Utils.pad(currentLocationDateTime.get(Calendar.DAY_OF_MONTH), 2) + "T" + Utils.pad(currentLocationDateTime.get(Calendar.HOUR_OF_DAY), 2)
                 + ":" + Utils.pad(currentLocationDateTime.get(Calendar.MINUTE), 2) + ":" + Utils.pad(currentLocationDateTime.get(Calendar.SECOND), 2) + "Z";
         mGPXWriter.append("<trkpt lat=\"").append(Double.toString(dCurrentLocationLatitude)).append("\" lon=\"")

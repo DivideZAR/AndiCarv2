@@ -142,7 +142,7 @@ public abstract class BaseViewAdapter
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final DefaultViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull final DefaultViewHolder holder, final int position) {
 
         //bind the cursor data to the ui views
         //TODO see why this can be happened https://github.com/mkeresztes/AndiCar/issues/3

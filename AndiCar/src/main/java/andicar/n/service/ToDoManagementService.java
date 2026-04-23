@@ -18,7 +18,6 @@
  */
 package andicar.n.service;
 
-import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -212,7 +211,6 @@ public class ToDoManagementService extends Service {
         taskCursor.close();
     }
 
-    @SuppressLint("WrongConstant")
     private void createToDo(Cursor taskCursor, @Nullable Cursor taskCarCursor) {
         Calendar nextToDoCalendar = Calendar.getInstance();
         long nextToDoMileage;
@@ -480,7 +478,6 @@ public class ToDoManagementService extends Service {
         lastTodoCursor.close();
     }
 
-    @SuppressLint("WrongConstant")
     private void setNextToDoCalendar(Calendar nextToDoCalendar, int frequencyType, int timeFrequency, boolean isLastDayOfMonth) {
         if (frequencyType == TaskEditFragment.TASK_TIME_FREQUENCY_TYPE_DAILY) {
             nextToDoCalendar.add(Calendar.DAY_OF_YEAR, timeFrequency);

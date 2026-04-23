@@ -1,6 +1,5 @@
 package andicar.n.persistence.viewadapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -46,10 +45,9 @@ public class ToDoViewAdapter extends BaseViewAdapter {
         }
     }
 
-    @SuppressLint("WrongConstant")
     @SuppressWarnings("deprecation")
     @Override
-    protected void cursorViewBinder(DefaultViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    protected void cursorViewBinder(DefaultViewHolder holder, int position) {
         String line1Content;
         String line2Content;
 
