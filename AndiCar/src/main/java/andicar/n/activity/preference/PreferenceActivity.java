@@ -550,19 +550,44 @@ public class PreferenceActivity extends AppCompatPreferenceActivity {
         }
     }
 
-    /**
-     * This fragment shows backup & restore preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @SuppressLint("HandlerLeak")
-    public static class BackupRestorePreferenceFragment extends PreferenceFragment implements AndiCarAsyncTaskListener, Runnable, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+/**
+ * This fragment shows backup & restore preferences only. It is used when the
+ * activity is showing a two-pane settings UI.
+ */
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+public static class BackupRestorePreferenceFragment extends PreferenceFragment implements AndiCarAsyncTaskListener, Runnable, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
         static ProgressDialog mProgress;
         GoogleAccountCredential mGoogleCredential;
 
         public static final String SUCCESS_MSG_KEY = "Success";
         public static final String ERROR_MSG_KEY = "ErrorMsg";
         private static final String LogTag = "BackupRestorePref";
+        private static class MyHandler extends Handler {
+            private final WeakReference<BackupRestorePreferenceFragment> fragmentRef;
+            MyHandler(BackupRestorePreferenceFragment fragment) {
+                this.fragmentRef = new WeakReference<>(fragment);
+            }
+            @Override
+            public void handleMessage(Message msg) {
+                BackupRestorePreferenceFragment fragment = fragmentRef.get();
+                if (fragment == null) return;
+                try {
+                    if (fragment.mProgress != null) {
+                        fragment.mProgress.dismiss();
+                    }
+                    if (msg.peekData() != null) {
+                        if (msg.peekData().containsKey(ERROR_MSG_KEY)) {
+                            Utils.showNotReportableErrorDialog(fragment.getActivity(), msg.peekData().getString(ERROR_MSG_KEY), null);
+                        }
+                        else if (msg.peekData().containsKey(SUCCESS_MSG_KEY)) {
+                            Utils.showInfoDialog(fragment.getActivity(), msg.peekData().getString(SUCCESS_MSG_KEY), null);
+                        }
+                    }
+                }
+                catch (Exception ignored) {
+                }
+            }
+        }
         private final Handler handler;
         private static boolean isGMailAccessGranted = true;
         private static boolean isShouldShowGDriveFolderSelector = false;
@@ -592,15 +617,8 @@ public class PreferenceActivity extends AppCompatPreferenceActivity {
         Preference listBackupsPreference;
 
         {
-            handler = new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    try {
-                        mProgress.dismiss();
-                        if (msg.peekData() != null) {
-                            if (msg.peekData().containsKey(ERROR_MSG_KEY)) {
-                                Utils.showNotReportableErrorDialog(getActivity(), msg.peekData().getString(ERROR_MSG_KEY), null);
-                            }
+            handler = new MyHandler(this);
+        }
                             else if (msg.peekData().containsKey(SUCCESS_MSG_KEY)) {
                                 Utils.showInfoDialog(getActivity(), msg.peekData().getString(SUCCESS_MSG_KEY), null);
                             }
