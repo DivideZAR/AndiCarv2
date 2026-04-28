@@ -19,6 +19,9 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Google Maps API Key Placeholder -->
+    <string name="google_maps_key" translatable="false">YOUR_API_KEY_HERE</string>
+
     <!-- _______________________________________ -->
 
     <!--not translated -->

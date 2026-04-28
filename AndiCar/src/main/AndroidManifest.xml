@@ -17,33 +17,18 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="18032701"
-    android:versionName="18.03-3">
+          xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- ************************************************************************************************* -->
-    <!-- Normal Permissions (https://developer.android.com/guide/topics/security/normal-permissions.html) -->
-    <!-- ************************************************************************************************* -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- need by notifications -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- need by secure backup -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- need by reminders (To-Dos) -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!-- need by BlueTooth link detector AddOn -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <!-- need by secure backup -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <!-- need by GPS tracking -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- need by db backup, GPS tracking (track files), app logging, etc. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
-    <!-- <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /> -->
 
     <supports-screens
         android:anyDensity="true"
@@ -77,8 +62,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl">
-        <uses-library android:name="com.google.android.maps" />
-
+        
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -88,167 +72,91 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
-        <meta-data
-            android:name="firebase_analytics_collection_enabled"
-            android:value="@bool/firebase_analytics_collection_enabled_value" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_notif_andicar_message"/>
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="andicar.n.activity.preference.PreferenceActivity"
             android:label="@string/gen_settings"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.andicar2.activity.MainActivity" />
-        </activity>
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name="andicar.n.activity.miscellaneous.BackupListActivity"
             android:label="@string/pref_backup_list_title"
-            android:parentActivityName="andicar.n.activity.preference.PreferenceActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="andicar.n.activity.preference.PreferenceActivity" />
-        </activity>
+            android:parentActivityName="andicar.n.activity.preference.PreferenceActivity" />
+
         <activity
             android:name="andicar.n.activity.miscellaneous.FileListActivity"
             android:label="@string/pref_log_files_title"
-            android:parentActivityName="andicar.n.activity.preference.PreferenceActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="andicar.n.activity.preference.PreferenceActivity" />
-        </activity>
-        <activity
-            android:name="andicar.n.activity.dialogs.GeneralNotificationDialogActivity"
-            android:theme="@style/AndiCarDialog" />
-        <activity
-            android:name="andicar.n.activity.dialogs.ToDoNotificationDialogActivity"
-            android:theme="@style/AndiCarDialog" />
-        <activity
-            android:name="andicar.n.activity.dialogs.WhatsNewDialog"
-            android:theme="@style/AndiCarDialog" />
-        <activity
-            android:name="andicar.n.activity.dialogs.MessageDialog"
-            android:theme="@style/AndiCarDialog"/>
+            android:parentActivityName="andicar.n.activity.preference.PreferenceActivity" />
+
+        <activity android:name="andicar.n.activity.dialogs.GeneralNotificationDialogActivity" android:theme="@style/AndiCarDialog" />
+        <activity android:name="andicar.n.activity.dialogs.ToDoNotificationDialogActivity" android:theme="@style/AndiCarDialog" />
+        <activity android:name="andicar.n.activity.dialogs.WhatsNewDialog" android:theme="@style/AndiCarDialog" />
+        <activity android:name="andicar.n.activity.dialogs.MessageDialog" android:theme="@style/AndiCarDialog"/>
 
         <activity
             android:name="andicar.n.activity.dialogs.GPSTrackControllerDialogActivity"
             android:icon="@mipmap/ic_launcher_gpstrack"
             android:label="@string/activity_gps_track_controller"
-            android:taskAffinity="andicar.n.activity.dialogs.GPSTrackControllerDialogActivity"
-            android:theme="@style/GPSTrackController">
+            android:theme="@style/GPSTrackController"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="andicar.n.activity.CreateMileageActivity"
             android:icon="@mipmap/ic_launcher_new_trip"
             android:label="@string/activity_new_trip"
-            android:taskAffinity="andicar.n.activity.CreateMileageDialog"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="andicar.n.activity.miscellaneous.BackupScheduleActivity"
-            android:theme="@style/AndiCarDialog" />
-        <activity
-            android:name="andicar.n.activity.miscellaneous.TaskCarLinkActivity"
-            android:theme="@style/AndiCarDialog" />
-        <activity
-            android:name="andicar.n.activity.dialogs.ChartDetailDialog"
-            android:theme="@style/AndiCarDialog" />
+
+        <activity android:name="andicar.n.activity.miscellaneous.BackupScheduleActivity" android:theme="@style/AndiCarDialog" />
+        <activity android:name="andicar.n.activity.miscellaneous.TaskCarLinkActivity" android:theme="@style/AndiCarDialog" />
+        <activity android:name="andicar.n.activity.dialogs.ChartDetailDialog" android:theme="@style/AndiCarDialog" />
+        
         <activity
             android:name="andicar.n.activity.CommonListActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.andicar2.activity.MainActivity" />
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name="andicar.n.activity.CommonDetailActivity"
             android:parentActivityName="andicar.n.activity.CommonListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="andicar.n.activity.CommonListActivity" />
-        </activity>
-        <activity
-            android:name="andicar.n.activity.miscellaneous.GPSTrackMap"
-            android:label="@string/gen_gpstrack_map" />
-        <activity
-            android:name="andicar.n.activity.miscellaneous.AboutActivity"
-            android:label="About AndiCar" />
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name="andicar.n.activity.miscellaneous.GPSTrackMap" android:label="@string/gen_gpstrack_map" />
+        <activity android:name="andicar.n.activity.miscellaneous.AboutActivity" android:label="About AndiCar" />
         <activity android:name="andicar.n.activity.test.TestActivity" />
 
         <activity
             android:name="andicar.n.activity.StatisticsActivity"
             android:parentActivityName="andicar.n.activity.CommonListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="andicar.n.activity.CommonListActivity" />
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <service
-            android:name="andicar.n.service.ToDoManagementService"
-            android:enabled="true" />
-        <service
-            android:name="andicar.n.service.GPSTrackService"
-            android:enabled="true" />
-        <service
-            android:name="andicar.n.service.BackupJob"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="andicar.n.service.SecureBackupJob"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="andicar.n.service.ToDoNotificationJob"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="andicar.n.service.FirebaseMessageHandler"
-            tools:ignore="ExportedService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-        <service
-            android:name="andicar.n.service.FirebaseTokenHandler"
-            android:enabled="true"/>
+        <service android:name="andicar.n.service.ToDoManagementService" android:enabled="true" />
+        <service android:name="andicar.n.service.GPSTrackService" android:enabled="true" />
 
         <receiver
             android:name="andicar.n.broadcastreceiver.ServiceStarter"
@@ -261,6 +169,7 @@
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name="andicar.n.broadcastreceiver.BTConnectionListener"
             android:exported="true">
@@ -270,7 +179,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- see https://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed/38858040#38858040 -->
         <provider
             android:name="andicar.n.persistence.AndiCarFileProvider"
             android:authorities="org.andicar2.provider"
