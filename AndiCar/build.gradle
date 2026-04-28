@@ -25,21 +25,26 @@ buildscript {
     }
 
     dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.2'
     }
 }
+
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
 
 repositories {
     google()
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 android {
+    namespace 'org.andicar2.activity'
     compileSdkVersion 34
     buildToolsVersion '34.0.0'
     defaultConfig {
         applicationId "org.andicar2.activity"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 34
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
@@ -50,8 +55,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            // Disable fabric build ID generation for debug builds
-            ext.enableCrashlytics = false
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
     }
     productFlavors {
@@ -61,31 +66,32 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
-        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+        resources {
+            pickFirsts += ['META-INF/LICENSE.txt']
+            excludes += ['META-INF/NOTICE.txt']
+        }
     }
 }
 
 jacoco {
-    version = "0.8.11"
+    toolVersion = "0.8.11"
 }
 
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
-    options.systemProperty("robotium.screenshotdir", "$buildDir/reports/robotium")
+    systemProperty "robotium.screenshotdir", "${project.layout.buildDirectory.get().asFile}/reports/robotium"
 }
 
 dependencies {
     // ========================================
     // ANDROIDX - Navigation
     // ========================================
-    // Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
 
     // ========================================
     // ANDROIDX - Compose
     // ========================================
-    // Compose (BOM aligned)
     implementation platform('androidx.compose:compose-bom:2024.02.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
@@ -97,78 +103,49 @@ dependencies {
     // ========================================
     // ANDROIDX - Testing
     // ========================================
-    // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-    // JaCoCo for code coverage
-    androidTestImplementation 'jacoco:jacoco:0.8.11'
+    androidTestImplementation 'org.jacoco:org.jacoco.agent:0.8.11'
 
     // ========================================
     // ANDROIDX - Support Libraries
     // ========================================
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support:design:27.1.0'
-    implementation 'com.android.support:support-v4:27.1.0'
-    implementation 'com.android.support:support-v13:27.1.0'
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // ========================================
     // THIRD-PARTY LIBRARIES
     // ========================================
-    // Droppy - menu library
     implementation 'com.shehabic.droppy:Droppy:0.6.0@aar'
-    // MPAndroidChart - charting library
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    // DateTimePicker
-    implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:1.7'
-    // File chooser
-    implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.6'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:1.9'
+    // Corrected JitPack dependency path
+    implementation 'com.github.obsez:android-filechooser:1.1.11'
 
     // ========================================
     // GOOGLE API CLIENT
     // ========================================
     implementation('com.google.api-client:google-api-client-android:2.2.0') {
         exclude group: 'org.apache.httpcomponents'
-        exclude module: 'guava-jdk5'
     }
-    implementation('com.google.apis:google-api-services-gmail:v1-rev20240520.1') {
+    // Using a more stable/available version for Gmail API
+    implementation('com.google.apis:google-api-services-gmail:v1-rev20230514-2.0.0') {
         exclude group: 'org.apache.httpcomponents'
-        exclude module: 'guava-jdk5'
     }
-
-    // ========================================
-    // DEPRECATED - CRASHLYTICS (removed, use Firebase Crashlytics now)
-    // ========================================
-    // implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
-    //     transitive = true
-    // }
-    // implementation('com.crashlytics.sdk.android:answers:1.3.13@aar') {
-    //     transitive = true
-    // }
 
     // ========================================
     // PLAY SERVICES
     // ========================================
-    implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    implementation 'com.google.android.gms:play-services-maps:19.0.0'
-    implementation 'com.google.android.gms:play-services-drive:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth:21.0.0'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
 
     // ========================================
-    // FIREBASE
+    // JAKARTA MAIL
     // ========================================
-    implementation platform('com.google.firebase:firebase-bom:33.1.0')
-    implementation 'com.google.firebase:firebase-messaging'
-    implementation 'com.google.firebase:firebase-crashlytics'
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.firebase:firebase-jobdispatcher:0.8.3'
-
-    // ========================================
-    // JAKARTA MAIL (replaces legacy javax.mail JARs)
-    // ========================================
-    implementation 'com.sun.mail:android-mail:2.1.0'
+    implementation 'com.sun.mail:android-mail:1.6.7'
+    implementation 'com.sun.mail:android-activation:1.6.7'
 }
-
-apply plugin: 'com.google.gms.google-services'
